@@ -350,6 +350,16 @@ class ProviderService {
         return { request_id: request._id, status: request.status };
     }
 
+    async completedRequest(providerId, requestId) {
+        const request = await ServiceRequest.findOne({ _id: requestId, provider: providerId });
+        if (!request) throw new Error('Service request not found');
+        if (request.status !== 'ACCEPTED') throw new Error('Cannot completed request');
+
+        request.status = 'COMPLETED';
+        await request.save();
+        return { request_id: request._id, status: request.status };
+    }
+
     async rejectRequest(providerId, requestId, reason) {
         const request = await ServiceRequest.findOne({ _id: requestId, provider: providerId });
         if (!request) throw new Error('Service request not found');
