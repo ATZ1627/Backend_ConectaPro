@@ -86,6 +86,16 @@ class ProviderController {
         }
     }
 
+    async completedRequest(req, res, next) {
+        try {
+            const { requestId } = req.params;
+            const data = await providerService.completedRequest(req.user.id, requestId);
+            res.json(createResponse(true, 'Solicitud completada.', data));
+        } catch (error) {
+            next(error);
+        }
+    }
+
     async rejectRequest(req, res, next) {
         try {
             const { requestId } = req.params;
