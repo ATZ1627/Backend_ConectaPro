@@ -18,6 +18,7 @@ router.patch('/services/:serviceId', providerController.updateService);
 router.get('/service-requests', providerController.getServiceRequests);
 router.get('/service-request/:requestId', providerController.getServiceRequestDetails);
 router.post('/service-requests/:requestId/accept', providerController.acceptRequest); // Note: Spec says /provider/service-requests/:requestId/accept
+router.post('/service-requests/:requestId/completed', providerController.completedRequest); // Note: Spec says /provider/service-requests/:requestId/completed
 router.post('/service-requests/:requestId/reject', providerController.rejectRequest); // Note: Spec says /provider/service-requests/:requestId/reject
 router.post('/service-request/:requestId/cancel', providerController.cancelRequest); // Note: Spec says /provider/service-request/:requestId/cancel (singular)
 
