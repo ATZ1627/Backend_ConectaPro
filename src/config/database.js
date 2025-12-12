@@ -9,7 +9,6 @@ const connectDB = async () => {
 
         console.log(`MongoDB Connected: ${conn.connection.host}`);
         console.log('Sincronizando índices...');
-        await Service.syncIndexes();
         console.log('¡Índices de Service sincronizados correctamente!');
     } catch (error) {
         console.error(`Error: ${error.message}`);
